@@ -47,7 +47,7 @@
             background: #f8fafc;
             border-left: 5px solid #cbd5e1;
             padding: 1.5rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             border-radius: 0 0.75rem 0.75rem 0;
         }
 
@@ -81,8 +81,8 @@
             border-radius: 6px;
         }
 
-        .badge-theory { background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 10px; }
-        .badge-practical { background: #fff7ed; color: #9a3412; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 10px; }
+        .badge-theory { background: #eff6ff; color: #1e40af; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 10px; letter-spacing: 0.05em; }
+        .badge-practical { background: #fff7ed; color: #9a3412; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-size: 10px; letter-spacing: 0.05em; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -122,31 +122,91 @@
                         <i class="fa-solid fa-layer-group"></i> 1. Bases & Environnement
                     </button>
                     <button onclick="showSub('excel', 'logic')" id="sub-excel-logic" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
-                        <i class="fa-solid fa-function"></i> 2. Fonctions & SI
+                        <i class="fa-solid fa-function"></i> 2. Fonctions & Logique
                     </button>
                     <button onclick="showSub('excel', 'bi')" id="sub-excel-bi" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
-                        <i class="fa-solid fa-chart-pie"></i> 3. TCD & Analyse
+                        <i class="fa-solid fa-chart-pie"></i> 3. TCD & Validation
                     </button>
                 </div>
                 <div class="lg:col-span-3 space-y-8">
+                    <!-- Base Excel -->
                     <div id="pane-excel-base" class="pane-excel animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Introduction au Tableur</h2>
+                            <h2 class="text-3xl font-black text-slate-900 mb-6 underline decoration-green-500 decoration-4 underline-offset-8">Introduction au Tableur</h2>
                             <div class="def-badge border-green-500">
-                                <p class="text-slate-600 italic">Excel est un outil de capture et d'analyse de données structurées. Le fichier s'appelle un <strong>Classeur</strong>, composé de <strong>Feuilles</strong>, <strong>Lignes</strong>, <strong>Colonnes</strong> et <strong>Cellules</strong>.</p>
+                                <p class="text-slate-600 italic leading-relaxed">Microsoft Excel est un logiciel tableur de la suite Office. Il permet de créer des tableaux, d'automatiser des calculs, de gérer des plannings et de générer des graphiques professionnels.</p>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <h4 class="font-bold text-green-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-folder-tree"></i> Vocabulaire de base</h4>
+                                    <ul class="text-xs text-slate-600 space-y-3">
+                                        <li><strong>Classeur :</strong> Le fichier global contenant vos travaux (.xlsx).</li>
+                                        <li><strong>Feuille de calcul :</strong> Les différents onglets en bas de la fenêtre.</li>
+                                        <li><strong>Cellule :</strong> L'intersection d'une ligne (chiffre) et d'une colonne (lettre), ex: <code>B4</code>.</li>
+                                        <li><strong>Ruban :</strong> La barre d'outils supérieure contenant les onglets (Accueil, Formules...).</li>
+                                    </ul>
+                                </div>
+                                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <h4 class="font-bold text-green-800 mb-3 flex items-center gap-2"><i class="fa-solid fa-keyboard"></i> Le Symbole Dollar ($)</h4>
+                                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">Indispensable lors de la recopie incrémentée (glisser vers le bas) pour figer une référence.</p>
+                                    <div class="p-3 bg-green-100 text-green-800 rounded-lg text-xs font-mono">
+                                        Ex: <code>$A$1</code> fige la colonne A et la ligne 1. (Raccourci: Touche F4)
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Fonctions Excel -->
                     <div id="pane-excel-logic" class="pane-excel hidden animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Logique & Fonctions</h2>
-                            <p class="text-sm font-mono p-4 bg-slate-900 text-green-400 rounded-xl">=SI(Test_Logique ; Valeur_Si_Vrai ; Valeur_Si_Faux)</p>
+                            <h2 class="text-3xl font-black text-slate-900 mb-6">Logique & Fonctions Courantes</h2>
+                            <div class="space-y-6">
+                                <div class="p-8 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-xl">
+                                    <h4 class="text-xl font-bold mb-4 text-green-400"><i class="fa-solid fa-code"></i> La Fonction SI (Décision logicielle)</h4>
+                                    <p class="text-sm text-slate-300 mb-4 leading-relaxed">Effectue un test logique et renvoie une valeur si le test est VRAI, et une autre si le test est FAUX.</p>
+                                    <code class="block p-4 bg-white/10 rounded-xl text-yellow-300 font-mono text-xs">
+                                        =SI(Test_Logique ; Valeur_Si_Vrai ; Valeur_Si_Faux)
+                                    </code>
+                                    <p class="mt-4 text-[11px] text-slate-400 italic">Exemple : <code>=SI(B4>=10; "Admis"; "Ajourné")</code></p>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="p-6 border border-green-200 bg-green-50 rounded-2xl">
+                                        <h4 class="font-bold text-green-800 mb-2">RECHERCHEV</h4>
+                                        <p class="text-xs text-slate-600 leading-relaxed">Recherche une valeur dans la première colonne d'un tableau et renvoie l'information correspondante située sur la même ligne.</p>
+                                    </div>
+                                    <div class="p-6 border border-slate-200 bg-slate-50 rounded-2xl">
+                                        <h4 class="font-bold text-slate-800 mb-2">Statistiques de base</h4>
+                                        <ul class="text-xs text-slate-600 space-y-2 font-mono">
+                                            <li><span class="text-green-600 font-bold">=SOMME()</span> : Calcule un total.</li>
+                                            <li><span class="text-green-600 font-bold">=MOYENNE()</span> : Valeur moyenne.</li>
+                                            <li><span class="text-green-600 font-bold">=MAX() / =MIN()</span> : Extrêmes.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- BI Excel -->
                     <div id="pane-excel-bi" class="pane-excel hidden animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Analyse de Données</h2>
-                            <p class="text-slate-600">Le <strong>Tableau Croisé Dynamique (TCD)</strong> permet d'agréger des milliers de lignes en quelques secondes.</p>
+                            <h2 class="text-3xl font-black text-slate-900 mb-6">Analyse & Validation des Données</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="space-y-4">
+                                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-chart-pie"></i></div>
+                                    <h4 class="font-bold text-slate-800 text-lg">Tableau Croisé Dynamique (TCD)</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">L'outil ultime d'Excel. Il permet de synthétiser, d'explorer et de présenter rapidement de grandes quantités de données brutes. Vous pouvez agréger des milliers de lignes en quelques secondes (sommes, comptages) par simple glisser-déposer des champs.</p>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-list-check"></i></div>
+                                    <h4 class="font-bold text-slate-800 text-lg">Validation des Données</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Permet de restreindre ce qu'un utilisateur peut entrer dans une cellule pour éviter les erreurs de saisie :</p>
+                                    <ul class="text-xs text-slate-600 space-y-2">
+                                        <li>• <strong>Liste déroulante :</strong> Limiter le choix (ex: Départements).</li>
+                                        <li>• <strong>Nombres :</strong> Forcer une plage (ex: âge entre 0 et 100).</li>
+                                        <li>• <strong>Message d'erreur :</strong> Afficher "Saisie invalide !".</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,26 +222,99 @@
                         <p class="text-[10px] opacity-80 font-bold uppercase">Rédaction Pro</p>
                     </div>
                     <button onclick="showSub('word', 'typo')" id="sub-word-typo" class="sub-btn w-full text-left px-5 py-4 rounded-xl border-blue-600 text-blue-700 sub-btn-active flex items-center gap-3">
-                        <i class="fa-solid fa-font"></i> 1. Typographie
+                        <i class="fa-solid fa-font"></i> 1. Typographie & Styles
                     </button>
                     <button onclick="showSub('word', 'structure')" id="sub-word-structure" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
                         <i class="fa-solid fa-file-invoice"></i> 2. Listes & Tableaux
                     </button>
+                    <button onclick="showSub('word', 'advanced')" id="sub-word-advanced" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
+                        <i class="fa-solid fa-bolt"></i> 3. Outils Avancés
+                    </button>
                 </div>
                 <div class="lg:col-span-3 space-y-8">
+                    <!-- Typographie Word -->
                     <div id="pane-word-typo" class="pane-word animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-8">Maîtriser l'Écriture</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-                                <div class="p-6 bg-slate-50 border-l-4 border-blue-600 rounded-r-2xl font-serif text-2xl italic">Serif (ex: Times) : Papier</div>
-                                <div class="p-6 bg-slate-50 border-l-4 border-blue-600 rounded-r-2xl font-sans text-2xl font-bold">Sans Serif (ex: Arial) : Écran</div>
+                            <h2 class="text-3xl font-black text-slate-900 mb-8 underline decoration-blue-500 decoration-4 underline-offset-8">L'Art de la Typographie</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                <div class="p-6 bg-slate-50 border-l-4 border-blue-600 rounded-r-2xl">
+                                    <h4 class="font-bold text-blue-900 mb-3 text-xs uppercase tracking-widest">Polices Serif (Empattements)</h4>
+                                    <p class="font-serif text-3xl mb-4 italic text-slate-800">Times New Roman</p>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Idéal pour le support <strong>papier</strong>. Les petits traits (empattements) aux extrémités des lettres guident le regard de ligne en ligne, facilitant la lecture prolongée.</p>
+                                </div>
+                                <div class="p-6 bg-slate-50 border-l-4 border-blue-600 rounded-r-2xl">
+                                    <h4 class="font-bold text-blue-900 mb-3 text-xs uppercase tracking-widest">Polices Sans Serif</h4>
+                                    <p class="font-sans text-3xl mb-4 font-bold text-slate-800">Arial / Calibri</p>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Recommandé pour <strong>l'écran</strong>. Design moderne, droit et épuré pour éviter la fatigue visuelle numérique.</p>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-blue-50 border border-blue-100 rounded-2xl flex justify-between items-center">
+                                <div class="space-y-1">
+                                    <h4 class="font-bold text-blue-900 text-sm">Hiérarchie Visuelle Standard</h4>
+                                    <p class="text-xs text-blue-700">Corps du texte : <strong>10 à 12 pts</strong> | Titres : <strong>14 à 18 pts</strong></p>
+                                </div>
+                                <div class="flex gap-4 text-xl text-blue-900 font-serif">
+                                    <span title="Ctrl+G"><strong>G</strong></span>
+                                    <span title="Ctrl+I"><em>I</em></span>
+                                    <span title="Ctrl+U"><u>S</u></span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Structure Word -->
                     <div id="pane-word-structure" class="pane-word hidden animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-6">Organisation & Tableaux</h2>
-                            <p class="text-slate-600 italic">"Les tableaux transforment vos listes brutes en informations structurées."</p>
+                            <h2 class="text-3xl font-black text-slate-900 mb-6">Listes, Tableaux & Mise en Page</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-list-ol text-blue-600"></i> Organisation des Listes</h4>
+                                    <ul class="text-xs text-slate-600 space-y-4 leading-relaxed">
+                                        <li><span class="font-bold text-slate-900">Les Puces :</span> Idéales pour énumérer des idées, avantages ou caractéristiques sans aucun ordre hiérarchique imposé.</li>
+                                        <li><span class="font-bold text-slate-900">La Numérotation :</span> Essentielle pour décrire des procédures étape par étape ou établir un classement chronologique/logique.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-table text-blue-600"></i> Insertion de Tableaux</h4>
+                                    <p class="text-xs text-slate-600 italic mb-4">"Les tableaux transforment vos listes brutes en informations structurées."</p>
+                                    <div class="p-4 bg-slate-50 border rounded-xl text-xs space-y-2">
+                                        <p>1. <strong>Insertion :</strong> Pour l'organisation de données chiffrées.</p>
+                                        <p>2. <strong>Styles :</strong> Thèmes de couleurs prédéfinis pour un design pro.</p>
+                                        <p>3. <strong>Mise en page :</strong> Fusion de cellules pour les titres globaux.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Avancé Word -->
+                    <div id="pane-word-advanced" class="pane-word hidden animate-fade">
+                        <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
+                            <h2 class="text-3xl font-black text-slate-900 mb-8">Outils de Productivité Avancés</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="p-6 bg-slate-900 text-white rounded-3xl text-center shadow-lg">
+                                    <i class="fa-solid fa-magnifying-glass-arrow-right text-3xl mb-3 text-blue-400"></i>
+                                    <span class="block text-xl font-black mb-2">Ctrl + H</span>
+                                    <p class="text-[10px] opacity-80 leading-relaxed">Rechercher et Remplacer. Modifiez des occurrences multiples en une seconde.</p>
+                                </div>
+                                <div class="p-6 bg-blue-600 text-white rounded-3xl text-center shadow-lg">
+                                    <i class="fa-solid fa-file-pdf text-3xl mb-3 text-white"></i>
+                                    <span class="block text-xl font-black mb-2">Export PDF</span>
+                                    <p class="text-[10px] opacity-90 leading-relaxed">Figez votre mise en page pour une diffusion universelle sans perte de formatage.</p>
+                                </div>
+                                <div class="p-6 bg-slate-50 rounded-3xl text-center border border-slate-200">
+                                    <i class="fa-solid fa-lock text-3xl mb-3 text-slate-700"></i>
+                                    <span class="block text-xl font-black mb-2 text-slate-800">Protection</span>
+                                    <p class="text-[10px] text-slate-500 leading-relaxed">Sécurisez vos documents sensibles et confidentiels avec un mot de passe robuste.</p>
+                                </div>
+                            </div>
+                            <div class="p-6 border-t border-slate-100">
+                                <h4 class="font-bold text-slate-800 mb-3">Structure Globale du Document :</h4>
+                                <ul class="text-xs text-slate-600 space-y-2 grid grid-cols-2">
+                                    <li><strong>En-tête :</strong> Logo et titre répétés en haut.</li>
+                                    <li><strong>Pied de page :</strong> Coordonnées et mentions en bas.</li>
+                                    <li><strong>Pagination :</strong> Numérotation automatique.</li>
+                                    <li><strong>SmartArt :</strong> Schématisation visuelle des idées.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,24 +332,100 @@
                     <button onclick="showSub('ppt', 'design')" id="sub-ppt-design" class="sub-btn w-full text-left px-5 py-4 rounded-xl border-orange-600 text-orange-700 sub-btn-active flex items-center gap-3">
                         <i class="fa-solid fa-clapperboard"></i> 1. Outils de PAO
                     </button>
+                    <button onclick="showSub('ppt', 'anim')" id="sub-ppt-anim" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> 2. Mouvement & Rythme
+                    </button>
                     <button onclick="showSub('ppt', 'rules')" id="sub-ppt-rules" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 flex items-center gap-3">
-                        <i class="fa-solid fa-lightbulb"></i> 2. Règles d'Impact
+                        <i class="fa-solid fa-lightbulb"></i> 3. Règles d'Impact
                     </button>
                 </div>
                 <div class="lg:col-span-3 space-y-8">
+                    <!-- PPT PAO -->
                     <div id="pane-ppt-design" class="pane-ppt animate-fade">
                         <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-3xl font-black text-slate-900 mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">Logiciel de PAO</h2>
-                            <p class="text-slate-600 italic mb-4">PowerPoint permet de structurer vos idées visuellement via des diapositives (Slides).</p>
+                            <h2 class="text-3xl font-black text-slate-900 mb-6 underline decoration-orange-500 decoration-4 underline-offset-8">PowerPoint : Logiciel de PAO</h2>
+                            <p class="text-slate-600 italic leading-relaxed mb-8">PowerPoint est un logiciel de <strong>Présentation Assistée par Ordinateur</strong>. Il n'est pas fait pour rédiger, mais pour structurer vos idées visuellement via des diapositives (Slides) afin de captiver votre audience lors d'une intervention orale.</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                <div class="p-6 bg-slate-50 border rounded-2xl">
+                                    <h4 class="font-bold text-orange-900 mb-2 text-sm"><i class="fa-solid fa-palette"></i> Thèmes & Variantes</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">Un <strong>Thème</strong> définit un jeu cohérent de couleurs, polices et effets. La <strong>Variante</strong> permet de changer l'ambiance colorée (clair/sombre) sans modifier la structure globale des contenus.</p>
+                                </div>
+                                <div class="p-6 bg-orange-50 border-orange-200 border rounded-2xl">
+                                    <h4 class="font-bold text-orange-900 mb-2 text-sm"><i class="fa-solid fa-layer-group"></i> Le Masque de Diapositive</h4>
+                                    <p class="text-xs text-slate-600 leading-relaxed">C'est le "patron" du document. Toute modification effectuée ici (ajout d'un logo, changement de police des titres) s'applique instantanément et uniformément à toutes vos slides.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- PPT Animation -->
+                    <div id="pane-ppt-anim" class="pane-ppt hidden animate-fade">
+                        <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100 overflow-hidden">
+                            <h2 class="text-3xl font-black text-slate-900 mb-8">Donner du Rythme : Transitions vs Animations</h2>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse text-sm">
+                                    <thead>
+                                        <tr class="bg-slate-900 text-white font-black uppercase tracking-widest text-xs">
+                                            <th class="p-5 rounded-tl-xl">Caractéristique</th>
+                                            <th class="p-5">TRANSITIONS</th>
+                                            <th class="p-5 rounded-tr-xl">ANIMATIONS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-slate-700">
+                                        <tr class="border-b">
+                                            <td class="p-5 font-bold bg-slate-50">Cible</td>
+                                            <td class="p-5">La diapositive entière</td>
+                                            <td class="p-5">Objets spécifiques (texte, image, forme)</td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="p-5 font-bold bg-slate-50">Moment</td>
+                                            <td class="p-5 italic">Lors du passage d'une slide à l'autre</td>
+                                            <td class="p-5 italic">Pendant l'affichage d'une même slide</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-5 font-bold bg-slate-50">Exemples Pro</td>
+                                            <td class="p-5 text-orange-600 font-bold">Fondu, Pousser, Morphose</td>
+                                            <td class="p-5 text-orange-600 font-bold">Flottant, Balayer, Zoom</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PPT Impact -->
                     <div id="pane-ppt-rules" class="pane-ppt hidden animate-fade">
-                        <div class="bg-orange-600 text-white p-10 rounded-[2.5rem] shadow-xl text-center">
-                            <h3 class="text-2xl font-black mb-8 italic">Le Serment de l'Impact</h3>
-                            <div class="grid grid-cols-3 gap-4 text-[10px] font-bold uppercase tracking-widest">
-                                <div class="p-4 bg-white/10 rounded-2xl border">1 Idée par Slide</div>
-                                <div class="p-4 bg-white/10 rounded-2xl border">Visuel d'abord</div>
-                                <div class="p-4 bg-white/10 rounded-2xl border">Contraste Fort</div>
+                        <div class="space-y-6">
+                            <div class="bg-orange-600 text-white p-10 rounded-[2.5rem] shadow-xl relative overflow-hidden">
+                                <h3 class="text-3xl font-black mb-8 italic text-center">Le Serment de l'Impact</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                                    <div class="p-6 bg-white/10 rounded-2xl border border-white/20 backdrop-blur-sm">
+                                        <h4 class="font-bold text-sm mb-2 uppercase">1 Idée par Slide</h4>
+                                        <p class="text-[10px] opacity-90 leading-relaxed">Ne surchargez pas vos pages. Privilégiez les mots-clés plutôt que les longs paragraphes de texte.</p>
+                                    </div>
+                                    <div class="p-6 bg-white/10 rounded-2xl border border-white/20 backdrop-blur-sm">
+                                        <h4 class="font-bold text-sm mb-2 uppercase">Visuel d'Abord</h4>
+                                        <p class="text-[10px] opacity-90 leading-relaxed">Une image haute qualité vaut mille mots. Utilisez systématiquement des graphiques pour vos données.</p>
+                                    </div>
+                                    <div class="p-6 bg-white/10 rounded-2xl border border-white/20 backdrop-blur-sm">
+                                        <h4 class="font-bold text-sm mb-2 uppercase">Contraste Fort</h4>
+                                        <p class="text-[10px] opacity-90 leading-relaxed">Assurez la lisibilité : texte foncé sur fond clair, ou inversement. Pensez au public au fond de la salle.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="p-8 bg-white border border-slate-100 rounded-[2.5rem] shadow-sm">
+                                    <h4 class="text-xl font-bold mb-6 text-slate-800 flex items-center gap-3"><i class="fa-solid fa-clock text-orange-500"></i> La Règle d'Or 10/20/30</h4>
+                                    <ul class="text-sm text-slate-600 space-y-4 font-medium">
+                                        <li class="flex items-center gap-4"><span class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-black text-lg">10</span> Diapositives maximum.</li>
+                                        <li class="flex items-center gap-4"><span class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-black text-lg">20</span> Minutes de présentation.</li>
+                                        <li class="flex items-center gap-4"><span class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-black text-lg">30</span> Points min. pour la police.</li>
+                                    </ul>
+                                </div>
+                                <div class="p-8 bg-slate-900 text-white border border-slate-800 rounded-[2.5rem] shadow-lg flex flex-col justify-center">
+                                    <h4 class="text-xl font-bold mb-4 text-red-400 flex items-center gap-3"><i class="fa-solid fa-video"></i> Création de Tutoriels</h4>
+                                    <p class="text-sm text-slate-300 leading-relaxed mb-4">Saviez-vous que PowerPoint permet d'enregistrer votre écran d'ordinateur, votre voix et votre webcam ?</p>
+                                    <p class="text-xs text-slate-400 italic">L'exportation en fichier Vidéo (.mp4) est l'outil parfait pour créer des guides de formation interactifs et asynchrones.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -224,13 +433,13 @@
             </div>
         </section>
 
-        <!-- MODULE ÉVALUATIONS : Corrections intégrées -->
+        <!-- MODULE ÉVALUATIONS : Corrections Intégrales -->
         <section id="module-eval" class="module-section hidden">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
                 <div class="lg:col-span-1 space-y-3">
                     <div class="p-6 bg-red-600 text-white rounded-2xl mb-4 shadow-lg shadow-red-100">
                         <h3 class="text-sm font-black uppercase mb-1">Corrections</h3>
-                        <p class="text-xl font-black italic">EXAMEN 2026</p>
+                        <p class="text-xl font-black italic">PROMO 2026</p>
                     </div>
                     <button onclick="showSub('eval', 'A')" id="sub-eval-A" class="sub-btn w-full text-left px-5 py-4 rounded-xl border-red-600 text-red-700 sub-btn-active font-bold">Série A (Médical)</button>
                     <button onclick="showSub('eval', 'B')" id="sub-eval-B" class="sub-btn w-full text-left px-5 py-4 rounded-xl hover:bg-white text-slate-600 font-bold">Série B (Stocks)</button>
@@ -240,33 +449,54 @@
                     
                     <!-- SÉRIE A -->
                     <div id="pane-eval-A" class="pane-eval animate-fade">
-                        <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4">Corrigé Série A</h2>
+                        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100">
+                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4 flex items-center gap-3"><i class="fa-solid fa-file-signature text-red-600"></i> Corrigé Série A : Suivi Médical</h2>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-6">
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE A : THÉORIE & QCM</span>
-                                    <p class="text-xs mb-2">Raccourci pour Rechercher & Remplacer : <span class="correct-ans">Ctrl + H</span></p>
-                                    <p class="text-xs">Le fichier de travail dans Excel : <span class="correct-ans">Classeur</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE A : QCM</span>
+                                    <p class="text-sm mb-3"><strong>Q :</strong> Pour remplacer toutes les occurrences d'un mot dans Word, on utilise :<br>
+                                    <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Ctrl+H (Rechercher & Remplacer)</span></p>
                                 </div>
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE B : COMPLÉTER</span>
-                                    <p class="text-xs">Liste prédéfinie Excel : <span class="correct-ans">Validation des données</span></p>
-                                    <p class="text-xs">Police avec empattement : <span class="correct-ans">Serif</span></p>
-                                    <p class="text-xs">Passage d'une slide à l'autre : <span class="correct-ans">Transition</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE B : COMPLÉTER</span>
+                                    <div class="space-y-4 text-sm">
+                                        <p><strong>Q :</strong> Pour forcer l'utilisateur à choisir dans une liste prédéfinie sur Excel, on utilise la :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Validation des données</span></p>
+                                        
+                                        <p><strong>Q :</strong> Dans PowerPoint, le passage d'une diapositive à une autre s'appelle une :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Transition</span></p>
+                                        
+                                        <p><strong>Q :</strong> Une police avec empattement (ex: Times New Roman) est de type :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Serif</span></p>
+
+                                        <p><strong>Q :</strong> Le fichier de travail dans Excel s'appelle un :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Classeur</span></p>
+                                    </div>
                                 </div>
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE C : VRAI OU FAUX</span>
-                                    <p class="text-xs">Transformer PPT en Vidéo : <span class="correct-ans">VRAI</span></p>
-                                    <p class="text-xs">Mode Tableau désactive les filtres : <span class="correct-ans">FAUX</span></p>
-                                    <p class="text-xs">Export PDF fige la mise en page : <span class="correct-ans">VRAI</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE C : VRAI OU FAUX</span>
+                                    <ul class="space-y-3 text-sm">
+                                        <li class="flex justify-between items-center border-b pb-2">On peut transformer une présentation PowerPoint en vidéo (.mp4) : <span class="correct-ans">VRAI</span></li>
+                                        <li class="flex justify-between items-center border-b pb-2">Le mode "Tableau" dans Excel désactive les filtres : <span class="correct-ans text-rose-600 bg-rose-50">FAUX</span></li>
+                                        <li class="flex justify-between items-center">L'export PDF dans Word permet de figer la mise en page : <span class="correct-ans">VRAI</span></li>
+                                    </ul>
                                 </div>
-                                <div class="eval-card bg-slate-900 text-white">
-                                    <span class="badge-practical mb-4 inline-block">PARTIE D : EXCEL (Saisie de Formules)</span>
-                                    <div class="space-y-3 font-mono text-[11px]">
-                                        <p>Q1 (B8) - Total diabétiques : <span class="text-green-400">=SOMME(B4:B7)</span></p>
-                                        <p>Q2 - Maximum hypertendus : <span class="text-green-400">=MAX(B10:B13)</span></p>
-                                        <p>Q3 - Moyenne hypertendus : <span class="text-green-400">=MOYENNE(B10:B13)</span></p>
+                                <div class="eval-card bg-slate-900 text-white shadow-xl">
+                                    <span class="badge-practical mb-6 inline-block">PARTIE D : PRATIQUE EXCEL (Suivi Médical)</span>
+                                    <div class="space-y-6 font-mono text-sm">
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 1 : Calcul de Somme (Cellule B8 pour TOTAL diabétiques)</p>
+                                            <p class="text-green-400 font-bold text-lg">=SOMME(B4:B7)</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 2 : Analyse des données (Maximum de patients hypertendus)</p>
+                                            <p class="text-green-400 font-bold text-lg">=MAX(B10:B13)</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 3 : Moyenne (Calculer la moyenne des patients hypertendus)</p>
+                                            <p class="text-green-400 font-bold text-lg">=MOYENNE(B10:B13)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -275,26 +505,49 @@
 
                     <!-- SÉRIE B -->
                     <div id="pane-eval-B" class="pane-eval hidden animate-fade">
-                        <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4">Corrigé Série B</h2>
-                            <div class="space-y-4">
+                        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100">
+                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4 flex items-center gap-3"><i class="fa-solid fa-file-signature text-red-600"></i> Corrigé Série B : Gestion de Stocks</h2>
+                            
+                            <div class="space-y-6">
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE B : COMPLÉTER</span>
-                                    <p class="text-xs">Synthétiser des milliers de lignes : <span class="correct-ans">Tableau Croisé Dynamique</span></p>
-                                    <p class="text-xs">Sécuriser Word par MDP : <span class="correct-ans">Protection</span></p>
-                                    <p class="text-xs">Format slide grand écran : <span class="correct-ans">16:9</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE B : COMPLÉTER</span>
+                                    <div class="space-y-4 text-sm">
+                                        <p><strong>Q :</strong> L'outil le plus puissant pour synthétiser des milliers de lignes sur Excel est le :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">TCD (Tableau Croisé Dynamique)</span></p>
+                                        
+                                        <p><strong>Q :</strong> Pour sécuriser un document Word sensible, on utilise une ________ par mot de passe.<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Protection</span></p>
+                                        
+                                        <p><strong>Q :</strong> Le format de slide 16:9 correspond au mode :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Grand écran</span></p>
+
+                                        <p><strong>Q :</strong> La fonction =SOMME.SI permet d'additionner des valeurs selon un :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Critère (ou Condition)</span></p>
+                                    </div>
                                 </div>
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE C : VRAI OU FAUX</span>
-                                    <p class="text-xs">Sans Serif recommandé pour l'écran : <span class="correct-ans">VRAI</span></p>
-                                    <p class="text-xs">RECHERCHEX plus simple que RECHERCHEV : <span class="correct-ans">VRAI</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE C : VRAI OU FAUX</span>
+                                    <ul class="space-y-3 text-sm">
+                                        <li class="flex justify-between items-center border-b pb-2">Les polices "Sans Serif" (ex: Arial) sont recommandées pour l'écran : <span class="correct-ans">VRAI</span></li>
+                                        <li class="flex justify-between items-center border-b pb-2">=RECHERCHEX est la version moderne et plus simple de =RECHERCHEV : <span class="correct-ans">VRAI</span></li>
+                                        <li class="flex justify-between items-center">Il est conseillé de lire ses diapositives mot à mot lors d'une présentation : <span class="correct-ans text-rose-600 bg-rose-50">FAUX</span></li>
+                                    </ul>
                                 </div>
-                                <div class="eval-card bg-slate-900 text-white">
-                                    <span class="badge-practical mb-4 inline-block">PARTIE D : EXCEL (Gestion de Stocks)</span>
-                                    <div class="space-y-3 font-mono text-[11px]">
-                                        <p>Q1 - Formule Stock Fin : <span class="text-green-400">=B3 + C3 - D3</span> (Initial + Reçu - Utilisé)</p>
-                                        <p>Q2 - Total Stock Initial : <span class="text-green-400">=SOMME(B3:B9)</span></p>
-                                        <p>Q3 - Valeur Minimum (Rupture) : <span class="text-green-400">=MIN(E3:E9)</span></p>
+                                <div class="eval-card bg-slate-900 text-white shadow-xl">
+                                    <span class="badge-practical mb-6 inline-block">PARTIE D : PRATIQUE EXCEL (Gestion des Stocks)</span>
+                                    <div class="space-y-6 font-mono text-sm">
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 1 : Calcul du Stock Final (Colonne E) (Stock initial + Reçu - Utilisé)</p>
+                                            <p class="text-green-400 font-bold text-lg">=B3 + C3 - D3</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 2 : Formule pour le total général du "Stock initial" (Colonne B)</p>
+                                            <p class="text-green-400 font-bold text-lg">=SOMME(B3:B9)</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 3 : Identifier les ruptures de stock (Valeur minimum dans Colonne E)</p>
+                                            <p class="text-green-400 font-bold text-lg">=MIN(E3:E9)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -303,26 +556,55 @@
 
                     <!-- SÉRIE C -->
                     <div id="pane-eval-C" class="pane-eval hidden animate-fade">
-                        <div class="bg-white rounded-[2.5rem] p-10 shadow-sm border border-slate-100">
-                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4">Corrigé Série C</h2>
-                            <div class="space-y-4">
+                        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-slate-100">
+                            <h2 class="text-2xl font-black text-slate-900 mb-8 border-b pb-4 flex items-center gap-3"><i class="fa-solid fa-file-signature text-red-600"></i> Corrigé Série C : Planification</h2>
+                            
+                            <div class="space-y-6">
                                 <div class="eval-card">
-                                    <span class="badge-theory mb-2 inline-block">PARTIE B : COMPLÉTER</span>
-                                    <p class="text-xs">Identifier la valeur la plus élevée : <span class="correct-ans">MAX</span></p>
-                                    <p class="text-xs">Informations répétées en haut : <span class="correct-ans">En-tête</span></p>
-                                    <p class="text-xs">Modifier type (Date, %) : <span class="correct-ans">Format de cellule</span></p>
+                                    <span class="badge-theory mb-4 inline-block">PARTIE B : COMPLÉTER</span>
+                                    <div class="space-y-4 text-sm">
+                                        <p><strong>Q :</strong> La fonction =MAX permet d'identifier la valeur la plus _________ d'une plage.<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Élevée</span></p>
+                                        
+                                        <p><strong>Q :</strong> Dans Word, les informations répétées en haut de chaque page se trouvent dans :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">L'En-tête</span></p>
+                                        
+                                        <p><strong>Q :</strong> PowerPoint est un outil qui permet de structurer vos idées :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Visuellement</span></p>
+
+                                        <p><strong>Q :</strong> Pour modifier le type de données (Date, Pourcentage), on change le :<br>
+                                        <span class="text-xs text-slate-500">Rép :</span> <span class="correct-ans">Format de cellule</span></p>
+                                    </div>
                                 </div>
-                                <div class="eval-card bg-slate-900 text-white">
-                                    <span class="badge-practical mb-4 inline-block">PARTIE D : EXCEL (Planification Familiale)</span>
-                                    <div class="space-y-3 font-mono text-[11px]">
-                                        <p>Q1 - Stock Fin DIU (E8) : <span class="text-green-400">=B8 + C8 - D8</span></p>
-                                        <p>Q2 - Somme Produits Utilisés : <span class="text-green-400">=SOMME(D3:D9)</span></p>
-                                        <p>Q3 - Stock Initial Max : <span class="text-green-400">=MAX(B3:B9)</span></p>
+                                <div class="eval-card">
+                                    <span class="badge-theory mb-4 inline-block">PARTIE C : VRAI OU FAUX</span>
+                                    <ul class="space-y-3 text-sm">
+                                        <li class="flex justify-between items-center border-b pb-2">=SOMME.SI.ENS permet d'additionner des valeurs selon plusieurs critères : <span class="correct-ans">VRAI</span></li>
+                                        <li class="flex justify-between items-center border-b pb-2">Il faut privilégier les longs paragraphes sur les slides PowerPoint : <span class="correct-ans text-rose-600 bg-rose-50">FAUX</span></li>
+                                        <li class="flex justify-between items-center">Le raccourci Ctrl+H ouvre l'outil "Rechercher et Remplacer" : <span class="correct-ans">VRAI</span></li>
+                                    </ul>
+                                </div>
+                                <div class="eval-card bg-slate-900 text-white shadow-xl">
+                                    <span class="badge-practical mb-6 inline-block">PARTIE D : PRATIQUE EXCEL (Planification Familiale)</span>
+                                    <div class="space-y-6 font-mono text-sm">
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 1 : Calcul du Stock Fin pour le DIU (E8) (Initial + Reçu - Utilisé)</p>
+                                            <p class="text-green-400 font-bold text-lg">=B8 + C8 - D8</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 2 : Somme totale de la consommation (Colonne D, Cellule D10)</p>
+                                            <p class="text-green-400 font-bold text-lg">=SOMME(D3:D9)</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-slate-400 mb-1 text-xs">Question 3 : Comparaison de stock (Stock initial le plus élevé de B3:B9)</p>
+                                            <p class="text-green-400 font-bold text-lg">=MAX(B3:B9)</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -336,7 +618,7 @@
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <h2 class="text-4xl font-black text-slate-900 mb-4">Consulter mes Résultats</h2>
-                        <p class="text-slate-500 max-w-md mx-auto italic text-sm">Entrez votre matricule complet (ex: Kiné03/2526 ou IP07/2526).</p>
+                        <p class="text-slate-500 max-w-md mx-auto italic text-sm">Entrez votre matricule complet (ex: Kiné03/2526 ou IP07/2526). Les noms sont anonymisés.</p>
                     </div>
                     <div class="relative max-w-lg mx-auto mb-12">
                         <input type="text" id="studentSearch" placeholder="Ex: Kiné03/2526" 
@@ -483,7 +765,7 @@
                         <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                             <div class="text-left w-full">
                                 <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Résultat Session 2026</span>
-                                <h3 class="text-3xl font-black text-slate-900 mt-1 mb-2">${maskedName}</h3>
+                                <h3 class="text-3xl font-black text-slate-900 mt-1 mb-2" title="${student.name}">${maskedName}</h3>
                                 <div class="flex items-center gap-3">
                                     <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-[10px] font-black uppercase tracking-widest">${student.id}</span>
                                     <span class="px-3 py-1 bg-${color}-100 text-${color}-700 rounded-lg text-[10px] font-black uppercase tracking-widest">${status}</span>
@@ -498,14 +780,16 @@
                 `;
             } else {
                 resultDisplay.innerHTML = `
-                    <div class="animate-fade p-12 bg-rose-50 rounded-[2.5rem] border-2 border-rose-100 text-rose-600">
+                    <div class="animate-fade p-12 bg-rose-50 rounded-[2.5rem] border-2 border-rose-100 text-rose-600 shadow-lg">
                         <i class="fa-solid fa-circle-exclamation text-4xl mb-4"></i>
                         <h3 class="text-xl font-black mb-2">Matricule Introuvable</h3>
+                        <p class="text-sm italic">Veuillez vérifier votre numéro d'inscription IP ou Kiné.</p>
                     </div>
                 `;
             }
         }
 
+        // NAVIGATION LOGIC
         function switchModule(module) {
             document.querySelectorAll('.module-section').forEach(el => el.classList.add('hidden'));
             document.getElementById('module-' + module).classList.remove('hidden');
